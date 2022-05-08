@@ -8,7 +8,7 @@ import 'package:lm_student/Reusable_Utils/Heightwidth.dart' as height_width;
 import 'package:lm_student/Reusable_Utils/Responsive.dart';
 
 
-   dialogBox(BuildContext context,String title,Container content) async {
+   dialogBox(BuildContext context,String title,Widget content) async {
     await showDialog(
         context: context,
         builder: (context){

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,21 +19,27 @@ update(BuildContext context,TextEditingController textEditingController,String l
     break;
     case 'Dept' : updateDept(context, textEditingController);
     break;
-    case 'Batch' : updateBatch(context, textEditingController);
-    break;
     case 'Mobile' : updateMobile(context, textEditingController);
     break;
   }
 }
 
 updateRegNumber(BuildContext context,TextEditingController textEditingController) async {
-
-  String finalResult = await ProfileUpdate().updateRegNo(regNo: textEditingController.text);
-  if(finalResult == 'success'){
-    snackBar(content: 'Register number updated successfully', duration: 1500, context: context);
+  if(textEditingController.text.length != 12){
+    String finalResult = "Provide valid university Reg no";
+    snackBar(content: finalResult, duration: 2000, context: context);
   }
-  else{
-    snackBar(content: finalResult, duration: 1500, context: context);
+  else {
+    String finalResult = await ProfileUpdate().updateRegNo(
+        regNo: textEditingController.text);
+    if (finalResult == 'success') {
+      snackBar(content: 'Register number updated successfully',
+          duration: 1500,
+          context: context);
+    }
+    else {
+      snackBar(content: finalResult, duration: 1500, context: context);
+    }
   }
 }
 
@@ -58,9 +66,9 @@ updateDept(BuildContext context,TextEditingController textEditingController) asy
   }
 }
 
-updateBatch(BuildContext context,TextEditingController textEditingController) async {
+updateBatch(BuildContext context,String semName) async {
 
-  String finalResult = await ProfileUpdate().updateBatchName(batchName: textEditingController.text);
+  String finalResult = await ProfileUpdate().updateSemester(semName: semName);
   if(finalResult == 'success'){
     snackBar(content: 'Batch name updated successfully', duration: 1500, context: context);
   }
@@ -70,18 +78,23 @@ updateBatch(BuildContext context,TextEditingController textEditingController) as
 }
 
 updateMobile(BuildContext context,TextEditingController textEditingController) async {
-
-  String finalResult = await ProfileUpdate().updateMobile(mobileNumber: textEditingController.text);
-  if(finalResult == 'success'){
-    snackBar(content: 'Mobile number updated successfully', duration: 1500, context: context);
+  if(textEditingController.text.length != 10){
+    String finalResult = "Provide valid mobile number";
+    snackBar(content: finalResult, duration: 2000, context: context);
   }
-  else{
-    snackBar(content: finalResult, duration: 1500, context: context);
+  else {
+    String finalResult = await ProfileUpdate().updateMobile(
+        mobileNumber: textEditingController.text);
+    if (finalResult == 'success') {
+      snackBar(content: 'Mobile number updated successfully',
+          duration: 1500,
+          context: context);
+    }
+    else {
+      snackBar(content: finalResult, duration: 1500, context: context);
+    }
   }
 }
-
-
-
 Container updateDetails(BuildContext context,
     TextEditingController textEditingController,
     Icon prefixIcon,
@@ -133,7 +146,6 @@ Container updateDetails(BuildContext context,
                   snackBar(content: 'Provide ' + labelText + ' details', duration: 1500, context: context);
                 }
               },
-
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(resize.screenLayout(25, context)),
             ),

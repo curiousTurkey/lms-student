@@ -28,6 +28,7 @@ class AuthMethods{
     required String emailAddress,
     required String password,
     required File profileImage,
+    required String semester
 }) async{
 
     String finalResult = "Error 500. Database Connection Failed";
@@ -48,7 +49,7 @@ class AuthMethods{
         admissionNumber: 'null',
         deptName: 'null',
         mobileNumber: 'null',
-        batch: 'null',
+        batch: semester,
         universityRegNo: 'null',
       );
       await _firestore.collection('users').doc(userId).set(userModel.toJson());

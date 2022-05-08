@@ -23,12 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState(){
     super.initState();
-    addUserData();
     nextPage();
-  }
-  addUserData() async {
-    UserProvider _userProvider = Provider.of(context,listen: false);
-    await _userProvider.refreshUser();
   }
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Widget nextPageWidget = const LoginScreen() ;

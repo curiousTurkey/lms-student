@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lm_student/App_Screens/LeaveApplication.dart';
 import 'package:lm_student/App_Screens/ProfileScreen.dart';
 import 'package:lm_student/App_Screens/Signup_page.dart';
+import 'package:lm_student/App_Screens/TimeTable.dart';
 import 'package:lm_student/Reusable_Utils/Responsive.dart' as resize;
 import 'package:lm_student/Reusable_Utils/Colors.dart' as color_mode;
 import 'package:lm_student/Reusable_Utils/SideBar/SideBar.dart';
@@ -59,7 +61,10 @@ class _MainPageState extends State<MainPage> {
         },
         children: const [
           HomeScreen(),
-          ProfileScreen()        ],
+          LeaveApplication(),
+          TimeTable(),
+          ProfileScreen(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
@@ -81,15 +86,27 @@ class _MainPageState extends State<MainPage> {
         showUnselectedLabels: false,
         items: [
         BottomNavigationBarItem(
-            icon: const Icon(Icons.home_outlined),
+            icon: const Icon(FontAwesomeIcons.house,size: 16,),
             label: "Home",
-            activeIcon: FaIcon(FontAwesomeIcons.house,size: 16,color: color_mode.secondaryColor,),
+            activeIcon: FaIcon(FontAwesomeIcons.house,size: 25,color: color_mode.secondaryColor,),
           backgroundColor: color_mode.primaryColor,
         ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person_outline_outlined),
+            icon: const Icon(FontAwesomeIcons.paperPlane,size: 16,),
+            label: "Leave Application",
+            activeIcon:Icon(FontAwesomeIcons.solidPaperPlane,size: 25,color: color_mode.secondaryColor,),
+            backgroundColor: color_mode.primaryColor,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.table_chart,size: 16,),
+            label: "Time Table",
+            activeIcon:Icon(Icons.table_chart,size: 26,color: color_mode.secondaryColor,),
+            backgroundColor: color_mode.primaryColor,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person_outline_outlined,size: 20,),
             label: "Profile",
-            activeIcon:Icon(Icons.person,color: color_mode.secondaryColor,),
+            activeIcon:Icon(Icons.person,color: color_mode.secondaryColor,size: 26,),
             backgroundColor: color_mode.primaryColor,
           ),
       ],

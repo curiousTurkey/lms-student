@@ -23,8 +23,8 @@ class ProfileUpdate{
       return finalResult;
     }
   }
-  Future<String> updateBatchName({
-    required String batchName
+  Future<String> updateSemester({
+    required String semName
   }) async {
     String finalResult = "Some error occurred";
     FirebaseAuth _auth = FirebaseAuth.instance;
@@ -33,7 +33,7 @@ class ProfileUpdate{
       await FirebaseFirestore.instance
           .collection('users')
           .doc(_user)
-          .update({"batch": batchName});
+          .update({"semester": semName});
       return finalResult = "success";
     } catch(error){
       finalResult = error.toString();

@@ -105,6 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
         fullName: _fullNameController.text,
         emailAddress: _emailController.text,
         password: _passwordController.text,
+        semester: semValue,
         profileImage: imageSelected!);
     setState(() {
       isLoading = false;
@@ -116,6 +117,9 @@ class _SignupScreenState extends State<SignupScreen> {
       snackBar(content: finalResult, duration: duration, context: context);
     }
   }
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(value: item, child: Text(item),);
+  final List<String> semList = ['Select Semester','1st Sem','2nd Sem','3rd Sem','4th Sem','5th Sem','6th Sem'];
+  String semValue = "Select Semester";
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -192,6 +196,38 @@ class _SignupScreenState extends State<SignupScreen> {
                     hintText: 'Min 6 characters',
                     isPass: true,
                 ),
+                Container(
+                  height: resize.screenLayout(70, context),
+                  padding: EdgeInsets.all(resize.screenLayout(20, context)),
+                  decoration: const BoxDecoration(
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      dropdownColor: color_mode.primaryColor,
+                      focusColor: color_mode.primaryColor,
+                      style: TextStyle(fontSize: resize.screenLayout(30, context),
+                          color: color_mode.secondaryColor,
+                          fontWeight: FontWeight.w600
+                      ),
+                      borderRadius: BorderRadius.circular(resize.screenLayout(20, context)),
+                      iconDisabledColor: Colors.grey,
+                      iconEnabledColor: color_mode.secondaryColor,
+                      icon: const Icon(Icons.arrow_downward_rounded),
+                      enableFeedback: true,
+                      hint: const Text('Select Semester'),
+                      isExpanded: true,
+                      isDense: true,
+                      items: semList.map(buildMenuItem).toList(),
+                      value: semValue,
+                      onChanged: (sem) {
+                        setState(() {
+                          semValue = sem!;
+                          print(semValue);
+                        });
+                      },
+                    ),
+                  ),
+                ),
                 SizedBox(height: resize.screenLayout(30, context),),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: resize.screenLayout(25, context)),
@@ -201,7 +237,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       if(_emailController.text.isEmpty||
                           _fullNameController.text.isEmpty||
                           _passwordController.text.isEmpty||
-                          _confirmPasswordController.text.isEmpty
+                          _confirmPasswordController.text.isEmpty ||
+                         semValue == "Select Semester"
                       ){
                         snackBar(content: 'Please provide all fields.', duration: duration, context: context);
                       }else if(imageSelected==null){
