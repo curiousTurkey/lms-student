@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:lm_student/App_Screens/Home_screen.dart';
+import 'package:lm_student/App_Screens/ResetPassword.dart';
 import 'package:lm_student/App_Screens/Signup_page.dart';
 import 'package:lm_student/Resources/AuthMethods.dart';
 import 'package:lm_student/Reusable_Utils/CustomPageRoute.dart';
@@ -113,12 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         Container(
                           alignment: Alignment.centerRight,
                           child: GestureDetector(
-                            onTap: () async {
-                            //  await dialogBox(context, 'reset password');
-                           //  ScaffoldMessenger.of(context).showSnackBar(
-                           //      const SnackBar(content: Text('Forgot Pressed'),
-                           //        dismissDirection: DismissDirection.vertical,
-                           //        duration: Duration(milliseconds: 1500),));
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => const ResetPassword()));
                             },
                             child: Text('Forgot password?',
                               style: TextStyle(
@@ -158,32 +155,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               size: resize.screenLayout(50, context),
 
                             ),
-                          ),
-                        ),
-                        SizedBox(height: resize.screenLayout(20, context),),
-                        Container(
-                          child: Center(child: Text('-OR-',
-                            style: TextStyle(
-                              color: color_mode.secondaryColor,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )),
-                        ),
-                        SizedBox(height: resize.screenLayout(20, context),),
-                        Container(
-                          child: Center(child: Text('Sign in using ',
-                            style: TextStyle(
-                              color: color_mode.secondaryColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          )),
-                        ),
-                        SizedBox(height: resize.screenLayout(30, context),),
-                        GestureDetector(
-                          onTap: (){
-                          },
-                          child: Center(
-                            child: googleButton(context: context),
                           ),
                         ),
                         SizedBox(height: resize.screenLayout(40, context),),

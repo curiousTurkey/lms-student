@@ -269,32 +269,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: resize.screenLayout(10, context),),
-                Container(
-                  child: Center(child: Text('-OR-',
-                    style: TextStyle(
-                      color: color_mode.secondaryColor,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )),
-                ),
-                SizedBox(height: resize.screenLayout(20, context),),
-                Container(
-                  child: Center(child: Text('Sign up using ',
-                    style: TextStyle(
-                      color: color_mode.secondaryColor,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )),
-                ),
-                SizedBox(height: resize.screenLayout(20, context),),
-                GestureDetector(
-                  onTap: (){
-                  },
-                  child: Center(
-                    child: googleButton(context: context),
-                  ),
-                ),
                 SizedBox(height: resize.screenLayout(40, context),),
                 Row(
                   children: [
