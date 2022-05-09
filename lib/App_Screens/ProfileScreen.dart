@@ -349,12 +349,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   decoration: const BoxDecoration(
                                                   ),
                                                   child: DropdownButtonHideUnderline(
-                                                    child: DropdownButton<String>(
+                                                    child: StatefulBuilder(
+                                                      builder: (BuildContext context, StateSetter setState) {
+                                                        return DropdownButton<String>(
                                                         dropdownColor: color_mode.primaryColor,
                                                         focusColor: color_mode.primaryColor,
                                                         style: TextStyle(fontSize: resize.screenLayout(30, context),
-                                                            color: color_mode.secondaryColor,
-                                                            fontWeight: FontWeight.w600
+                                                        color: color_mode.secondaryColor,
+                                                        fontWeight: FontWeight.w600
                                                         ),
                                                         borderRadius: BorderRadius.circular(resize.screenLayout(20, context)),
                                                         iconDisabledColor: Colors.grey,
@@ -366,11 +368,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         items: listItem.map(buildMenuItem).toList(),
                                                         value: value,
                                                         onChanged: (val) {
-                                                          setState(() {
-                                                            value = val!;
-                                                            print(value);
-                                                          });
+                                                        setState(() {
+                                                        value = val!;
+                                                        });
                                                         }
+                                                        );
+                                                      }
                                                     ),
                                                   ),
                                                 ),
