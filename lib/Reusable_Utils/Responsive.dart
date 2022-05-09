@@ -39,3 +39,9 @@ double containerSize (double size,BuildContext context){
     return finalSize;
   }
 }
+Widget verticalSpace(double size,BuildContext context){
+  return SizedBox(height:screenLayout(size, context));
+}
+Widget horizontalSpace(double size,BuildContext context){
+  return SizedBox(width:screenLayout(size, context));
+}

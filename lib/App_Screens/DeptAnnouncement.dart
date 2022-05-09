@@ -113,7 +113,7 @@ class _DeptAnnounceState extends State<DeptAnnounce> {
     print(semester);
     final Stream<QuerySnapshot> announcements = FirebaseFirestore.instance.collection('announcement').where('isForStudent', isEqualTo: 'true').where('announcer', isEqualTo: 'hod').orderBy("announcedate").snapshots();
     return Scaffold(
-      appBar: appBar(context: context, title: 'Class Announcements'),
+      appBar: appBar(context: context, title: 'Department Announcements'),
       body: StreamBuilder<QuerySnapshot>(
         stream: announcements,
         builder: (_, AsyncSnapshot<QuerySnapshot> snapshot){
@@ -129,6 +129,11 @@ class _DeptAnnounceState extends State<DeptAnnounce> {
           }
           else if(!snapshot.hasData){
             return const Text('No data');
+          }
+          else if(userModel.deptName == 'null'){
+            return const Center(
+              child: Text('Please update Department in profile to view notifications'),
+            );
           }
           int itemCount = snapshot.data!.size;
           return ListView.builder(

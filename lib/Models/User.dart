@@ -14,6 +14,7 @@ class UserModel{
   late String courseType;
   late String mobileNumber;
   final String userType;
+  double leaveTaken;
 
   bool profileCompleted = false;
    UserModel({
@@ -28,7 +29,8 @@ class UserModel{
      required this.admissionNumber,
      required this.courseType,
      required this.mobileNumber,
-     this.userType = "student"
+     this.userType = "student",
+     this.leaveTaken = 0
 
 });
 Map<String , dynamic> toJson() => {
@@ -44,6 +46,7 @@ Map<String , dynamic> toJson() => {
   "courseType" : courseType,
   "mobileNumber" : mobileNumber,
   "usertype" : userType,
+  "leavetaken" : leaveTaken
 
   };
 
@@ -62,6 +65,7 @@ Map<String , dynamic> toJson() => {
       courseType: snapShot['courseType'],
       mobileNumber: snapShot['mobileNumber'],
       userType: snapShot['usertype'],
+      leaveTaken: snapShot['leavetaken']
     );
   }
 }

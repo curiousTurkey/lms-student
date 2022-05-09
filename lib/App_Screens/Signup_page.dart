@@ -314,7 +314,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         style: TextStyle(
                             fontSize: resize.screenLayout(28, context),
                             fontWeight: FontWeight.w700,
-                            color: color_mode.tertiaryColor
+                            color: color_mode.spclColor2
                         ),
                       ),
                     ),

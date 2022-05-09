@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lm_student/App_Screens/ClassAnnouncement.dart';
+import 'package:lm_student/App_Screens/LeaveApplication.dart';
+import 'package:lm_student/App_Screens/LeaveHistory.dart';
+import 'package:lm_student/App_Screens/LeaveStatus.dart';
+import 'package:lm_student/App_Screens/TimeTable.dart';
 import 'package:lm_student/Models/User.dart';
 import 'package:lm_student/Reusable_Utils/Colors.dart' as color_mode;
 import 'package:firebase_storage/firebase_storage.dart';
@@ -18,6 +23,7 @@ import '../Reusable_Utils/HeightWidth.dart';
 import '../Reusable_Utils/HomeScreenContainer/HomeScreenContainer.dart';
 import '../Reusable_Utils/PageView/PageView.dart';
 import '../Reusable_Utils/Responsive.dart';
+import 'DeptAnnouncement.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -32,7 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState(){
     if(mounted) {
       super.initState();
+      addUserData();
     }
+  }
+  addUserData() async {
+    UserProvider _userProvider = Provider.of(context,listen: false);
+    await _userProvider.refreshUser();
   }
   @override
   void dispose(){
@@ -106,21 +117,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                     heading: "Announcement",
                                     icon: FontAwesomeIcons.bell,
                                     onTap: () {
-                                     // Navigator.push(context, CustomPageRouteSide(child: const Announcement()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const ClassAnnouncement()));
                                     }),
                                 homeContainer(
                                     context: context,
                                     description: "Announcement from department",
                                     heading: "Announcement",
                                     icon: FontAwesomeIcons.newspaper,
-                                    onTap: () {}),
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const DeptAnnounce()));
+                                    }),
                                 homeContainer(
                                     context: context,
                                     description: "View Timetable for the day",
                                     heading: "TimeTable",
                                     icon: FontAwesomeIcons.calendar,
                                     onTap: () {
-                                     // Navigator.push(context, CustomPageRouteSide(child: const TimeTablePublish()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const TimeTable()));
                                     }),
                                 homeContainer(
                                     context: context,
@@ -128,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     heading: "Leave Application",
                                     icon: FontAwesomeIcons.paperPlane,
                                     onTap: () {
-                                    //  Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveApply()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveApplication()));
                                     }),
                                 homeContainer(
                                     context: context,
@@ -136,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     heading: "Leave Status",
                                     icon: FontAwesomeIcons.barsProgress,
                                     onTap: () {
-                                    //  Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveStatus()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveStatus()));
                                     }),
 
                                 homeContainer(
@@ -145,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     heading: "Leave History",
                                     icon: FontAwesomeIcons.history,
                                     onTap: () {
-                                     // Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveHistory()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveHistory()));
                                     }),
 
                               ],

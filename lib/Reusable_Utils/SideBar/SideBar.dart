@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lm_student/App_Screens/ClassAnnouncement.dart';
 import 'package:lm_student/App_Screens/LeaveApplication.dart';
 import 'package:lm_student/App_Screens/LeaveHistory.dart';
@@ -107,21 +108,21 @@ class _SideBarState extends State<SideBar> {
               }),
           sidebarListTile(
               title: 'Leave Application',
-              leadingIcon:Icons.notification_important_outlined,
+              leadingIcon:FontAwesomeIcons.paperPlane,
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveApplication()));
               }),
           sidebarListTile(
               title: 'Leave Status',
-              leadingIcon:Icons.notification_important_outlined,
+              leadingIcon:FontAwesomeIcons.barsProgress,
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveStatus()));
               }),
           sidebarListTile(
               title: 'Leave History',
-              leadingIcon:Icons.notification_important_outlined,
+              leadingIcon:Icons.history,
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveHistory()));
@@ -129,7 +130,7 @@ class _SideBarState extends State<SideBar> {
               }),
           sidebarListTile(
               title: 'TimeTable',
-              leadingIcon:Icons.notification_important_outlined,
+              leadingIcon:FontAwesomeIcons.tableColumns,
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const TimeTable()));
@@ -140,7 +141,7 @@ class _SideBarState extends State<SideBar> {
           ),
           sidebarListTile(
               title: 'Logout',
-              leadingIcon:Icons.notification_important_outlined,
+              leadingIcon:Icons.logout,
               onTap: logoutDialog),
         ],
       ),
