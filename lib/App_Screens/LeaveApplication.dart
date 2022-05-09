@@ -111,14 +111,32 @@ class _LeaveApplicationState extends State<LeaveApplication> {
       snackBar(content: finalResult, duration: 2000, context: context);
     }
   }
-
+  late double leaveTaken;
+  double internalMark = 0;
   @override
   Widget build(BuildContext context) {
     UserModel userModel = Provider.of<UserProvider>(context).getUser;
+
     name = userModel.fullName;
     dept = userModel.deptName;
     semester = userModel.batch;
     email = userModel.emailAddress;
+    leaveTaken = userModel.leaveTaken;
+      double totalAttendence = 90.0 - leaveTaken;
+      double attendencePercentage = (totalAttendence/90)*100;
+      if(attendencePercentage >= 90){
+        internalMark = 5;
+      }
+      else if(attendencePercentage >= 80 && attendencePercentage < 90){
+        internalMark = 4;
+      }
+      else if(attendencePercentage >=70 && attendencePercentage <80) {
+        internalMark = 3;
+      }
+      else{
+        internalMark = 2;
+      }
+
     TextStyle textStyle = TextStyle(color: color_mode.secondaryColor2,
         fontWeight: FontWeight.w600,
         letterSpacing: 1.7);
@@ -150,6 +168,15 @@ class _LeaveApplicationState extends State<LeaveApplication> {
                  style: textStyle,
                ),
              ],),
+              SizedBox(height: resize.screenLayout(55, context),),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text('Expected Internal Mark on Attendence : ',
+                  style: textStyle,
+                ),
+                Text(((internalMark)).toString(),
+                  style: textStyle,
+                ),
+              ],),
               SizedBox(height: resize.screenLayout(55, context),),
               TextForm(
                   textEditingController: _subjectController,
