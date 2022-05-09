@@ -38,7 +38,7 @@ class _SideBarState extends State<SideBar> {
   void logoutUser() async{
     String finalResult = await AuthMethods().logoutUser();
     if(finalResult == "success"){
-      Navigator.pushReplacement(context, CustomPageRoute(child: const LoginScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const LoginScreen()));
     }
   }
   @override
