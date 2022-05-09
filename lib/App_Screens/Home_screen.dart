@@ -14,6 +14,10 @@ import 'package:lm_student/Reusable_Utils/SideBar/SideBar.dart';
 import 'package:provider/provider.dart';
 
 import '../Providers/UserProvider.dart';
+import '../Reusable_Utils/HeightWidth.dart';
+import '../Reusable_Utils/HomeScreenContainer/HomeScreenContainer.dart';
+import '../Reusable_Utils/PageView/PageView.dart';
+import '../Reusable_Utils/Responsive.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -44,25 +48,115 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     UserModel userModel = Provider.of<UserProvider>(context).getUser;
-    return Scaffold(
-      key: _globalKey,
-      drawer: const SideBar(),
-      backgroundColor: color_mode.primaryColor,
-      body: Stack(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.menu_rounded),
-            onPressed: () {
-              _globalKey.currentState?.openDrawer();
-            },),
-          Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(child: Text("Welcome " + userModel.fullName)),
-            FloatingActionButton(onPressed: logoutUser,child: const Text('Logout'),),
+    return SafeArea(
+      child: Scaffold(
+        key: _globalKey,
+        drawer: const SideBar(),
+        backgroundColor: color_mode.primaryColor,
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+                pinned: true,
+                floating: false,
+                snap: false,
+                backgroundColor: color_mode.secondaryColor2,
+                shadowColor: color_mode.tertiaryColor,
+                elevation: 2,
+                expandedHeight: getHeight(context) / 2.8,
+                flexibleSpace: const FlexibleSpaceBar(
+                  background: ScrollPageView(),
+                )),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenLayout(30, context),
+                    vertical: screenLayout(30, context)),
+              ),
+            ),
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: screenLayout(80, context),),
+                          Padding(
+                            padding: EdgeInsets.only(left: screenLayout(20, context)),
+                            child: Text(
+                              "All Services",
+                              style: TextStyle(
+                                  color: color_mode.tertiaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: screenLayout(40, context),
+                                  letterSpacing: 1.5),
+                            ),
+                          ),
+                          SizedBox(
+                            height: screenLayout(40, context),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Wrap(
+                              runSpacing: screenLayout(10, context),
+                              spacing: screenLayout(10, context),
+                              children: [
+                                homeContainer(
+                                    context: context,
+                                    description: "Announcement from class teacher.",
+                                    heading: "Announcement",
+                                    icon: FontAwesomeIcons.bell,
+                                    onTap: () {
+                                     // Navigator.push(context, CustomPageRouteSide(child: const Announcement()));
+                                    }),
+                                homeContainer(
+                                    context: context,
+                                    description: "Announcement from department",
+                                    heading: "Announcement",
+                                    icon: FontAwesomeIcons.newspaper,
+                                    onTap: () {}),
+                                homeContainer(
+                                    context: context,
+                                    description: "View Timetable for the day",
+                                    heading: "TimeTable",
+                                    icon: FontAwesomeIcons.calendar,
+                                    onTap: () {
+                                     // Navigator.push(context, CustomPageRouteSide(child: const TimeTablePublish()));
+                                    }),
+                                homeContainer(
+                                    context: context,
+                                    description: "Apply for leave",
+                                    heading: "Leave Application",
+                                    icon: FontAwesomeIcons.paperPlane,
+                                    onTap: () {
+                                    //  Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveApply()));
+                                    }),
+                                homeContainer(
+                                    context: context,
+                                    description: "Status of leave",
+                                    heading: "Leave Status",
+                                    icon: FontAwesomeIcons.barsProgress,
+                                    onTap: () {
+                                    //  Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveStatus()));
+                                    }),
+
+                                homeContainer(
+                                    context: context,
+                                    description: "History of leave",
+                                    heading: "Leave History",
+                                    icon: FontAwesomeIcons.history,
+                                    onTap: () {
+                                     // Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveHistory()));
+                                    }),
+
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: screenLayout(100, context),),
+                        ],
+                      );
+                    }, childCount: 1)),
           ],
         ),
-      ]
       ),
     );
   }

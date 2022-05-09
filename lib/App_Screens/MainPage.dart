@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lm_student/App_Screens/ClassAnnouncement.dart';
 import 'package:lm_student/App_Screens/LeaveApplication.dart';
 import 'package:lm_student/App_Screens/ProfileScreen.dart';
 import 'package:lm_student/App_Screens/Signup_page.dart';
@@ -62,6 +63,7 @@ class _MainPageState extends State<MainPage> {
         children: const [
           HomeScreen(),
           LeaveApplication(),
+          ClassAnnouncement(),
           TimeTable(),
           ProfileScreen(),
         ],
@@ -95,6 +97,12 @@ class _MainPageState extends State<MainPage> {
             icon: const Icon(FontAwesomeIcons.paperPlane,size: 16,),
             label: "Leave Application",
             activeIcon:Icon(FontAwesomeIcons.solidPaperPlane,size: 25,color: color_mode.secondaryColor,),
+            backgroundColor: color_mode.primaryColor,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(FontAwesomeIcons.bell,size: 16,),
+            label: "Class announcement",
+            activeIcon:Icon(Icons.notifications_active,size: 26,color: color_mode.secondaryColor,),
             backgroundColor: color_mode.primaryColor,
           ),
           BottomNavigationBarItem(

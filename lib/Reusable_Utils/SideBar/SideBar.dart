@@ -54,7 +54,7 @@ class _SideBarState extends State<SideBar> {
             child: UserAccountsDrawerHeader(
                 decoration: const BoxDecoration(
                     image:  DecorationImage(
-                        image: AssetImage('assets/Background/1092608.webp'),
+                        image: NetworkImage('https://www.pixelstalk.net/wp-content/uploads/2016/10/Aqua-Blue-Photos.jpg'),
                         fit: BoxFit.cover,
                         isAntiAlias: true,
                         filterQuality: FilterQuality.high

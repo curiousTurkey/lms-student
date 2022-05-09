@@ -46,6 +46,8 @@ dependencies:
   font_awesome_flutter:
   custom_alert_dialog_box: ^1.0.2
   flutter_initicon: ^2.0.0
+  intl: ^0.17.0
+  dots_indicator: ^2.1.0
 
 
 dev_dependencies:
@@ -76,6 +78,7 @@ flutter:
     - assets/logos/google.png
     - assets/Background/background.jpg
     - assets/Background/1092608.webp
+    - assets/ScrollableImages/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
