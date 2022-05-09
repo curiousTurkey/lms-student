@@ -12,11 +12,13 @@ class UserLeaveModel {
   final String toDate;
   final String session1;
   final String session2;
+  final String userId;
   String isApproved;
 
   //class constructor
 
   UserLeaveModel({
+    required this.userId,
     required this.fullName,
     required this.dept,
     required this.semester,
@@ -42,7 +44,8 @@ class UserLeaveModel {
         'todate': toDate,
         'session1': session1,
         'session2': session2,
-        'isapproved': isApproved
+        'isapproved': isApproved,
+        'userid' : userId
       };
 
   static UserLeaveModel fromSnap(DocumentSnapshot snapshot) {
@@ -58,13 +61,15 @@ class UserLeaveModel {
         toDate: snapShot['todate'],
         session1: snapShot['session1'],
         session2: snapShot['session2'],
-        isApproved: snapShot['isapproved']
+        isApproved: snapShot['isapproved'],
+      userId: snapShot['userid']
     );
   }
 
   static UserLeaveModel fromJsonAsync(
       AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> json) =>
       UserLeaveModel(
+        userId: json.data!['userid'],
           fullName: json.data!['name'],
           dept: json.data!['deptName'],
           semester: json.data!['semester'],

@@ -21,6 +21,7 @@ class UserLeaveMethods{
 }) async {
     String finalResult = "Database connection error. Check Network and try again";
     try {
+      String _user = _auth.currentUser!.uid;
       UserLeaveModel userLeaveModel = UserLeaveModel(
           fullName: fullName,
           dept: dept,
@@ -31,6 +32,7 @@ class UserLeaveMethods{
           fromDate: fromDate,
           toDate: toDate,
           session1: session1,
+          userId: _user,
           session2: session2);
 
       await _firestore.collection('student leave').doc().set(
