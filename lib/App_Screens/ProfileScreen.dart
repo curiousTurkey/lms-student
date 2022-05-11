@@ -36,6 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _batchNameController = TextEditingController();
   bool isLoading = false;
+  late String imageUrl;
 
   @override
   void dispose() {
@@ -159,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     UserModel userModel = Provider.of<UserProvider>(context).getUser;
-    String imageUrl = '';
+    imageUrl = userModel.imageUrl;
     String semester = '';
     String userId = userModel.userId;
     final Stream<DocumentSnapshot<Map<String, dynamic>>> profile = FirebaseFirestore.instance.collection('users').doc(userId).snapshots();
@@ -183,7 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   admission = data['admissionNumber'];
                   department = data['deptName'];
                   mobile = data['mobileNumber'];
-                  imageUrl = data['bio pic url'];
+                  imageUrl = data['photoUrl'];
                   semester = data['semester'];
                 }
               }
@@ -221,7 +222,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   animationDuration:
                                       const Duration(milliseconds: 1000),
                                   child: Ink.image(
-                                    image: NetworkImage(userModel.imageUrl),
+                                    image: NetworkImage(imageUrl),
                                     fit: BoxFit.cover,
                                     width: resize.screenLayout(250, context),
                                     height: resize.screenLayout(250, context),
