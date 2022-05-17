@@ -13,13 +13,24 @@ import '../snackBar.dart';
 
 update(BuildContext context,TextEditingController textEditingController,String labelText){
   switch(labelText){
-    case 'University Reg No' : updateRegNumber(context, textEditingController);
+    case 'University Reg No' : if(textEditingController.text.length == 12)
+    {updateRegNumber(context, textEditingController);
+    }
+    else{
+      snackBar(content: 'Provide valid Register number', duration: 2000, context: context);
+    }
     break;
     case 'Admission Number'  : updateAdmissionNumber(context, textEditingController);
     break;
     case 'Dept' : updateDept(context, textEditingController);
     break;
-    case 'Mobile' : updateMobile(context, textEditingController);
+    case 'Mobile' : if(textEditingController.text.length == 10)
+    {
+      updateMobile(context, textEditingController);
+    }
+    else{
+      snackBar(content: 'Provide valid phone number', duration: 2000, context: context);
+    }
     break;
   }
 }
@@ -143,7 +154,7 @@ Container updateDetails(BuildContext context,
                   Navigator.pop(context);
                 }
                 else{
-                  snackBar(content: 'Provide ' + labelText + ' details', duration: 1500, context: context);
+                  snackBar(content: 'Provide valid ' + labelText + ' details', duration: 1500, context: context);
                 }
               },
             shape: RoundedRectangleBorder(

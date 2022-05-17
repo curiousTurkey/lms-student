@@ -102,7 +102,7 @@ class ProfileUpdate{
     try{
       String _user = _auth.currentUser!.uid;
       await FirebaseFirestore.instance.collection('users').doc(_user).update(
-          {'photoUrl' : imageUrl});
+          {'bio pic url' : imageUrl});
       return finalResult = "Image updated successfully.";
     }catch(error){
       finalResult = error.toString();

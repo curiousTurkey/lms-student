@@ -184,7 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   admission = data['admissionNumber'];
                   department = data['deptName'];
                   mobile = data['mobileNumber'];
-                  imageUrl = data['photoUrl'];
+                  imageUrl = data['bio pic url'];
                   semester = data['semester'];
                 }
               }
@@ -322,7 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               const Icon(
                                                   Icons.app_registration),
                                               'Admission Number',
-                                              TextInputType.number,
+                                              TextInputType.text,
                                               'Provide admission Number'));
                                     },
                                     child: const Icon(Icons.edit)),
